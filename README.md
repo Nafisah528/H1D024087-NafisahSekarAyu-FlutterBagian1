@@ -72,3 +72,18 @@ tokokita/
    cd c:\Kuliah\Belajar\tokokita
    flutter run
    ```
+## Screenshot Tampilan
+<img width="500" height="826" alt="image" src="https://github.com/user-attachments/assets/576e2c09-69b2-4a0a-8cef-1fe4b80158ae" />
+<img width="497" height="798" alt="image" src="https://github.com/user-attachments/assets/ce7ac632-3a33-474d-9f23-af1906a229ab" />
+<img width="497" height="810" alt="image" src="https://github.com/user-attachments/assets/4cf4e866-f125-48ef-8294-450953c1376b" />
+<img width="495" height="787" alt="image" src="https://github.com/user-attachments/assets/2b88488a-ded4-4fff-a8b1-5ae2c522ed47" />
+<img width="498" height="801" alt="image" src="https://github.com/user-attachments/assets/73cfc689-4217-4a3a-8ad4-4780fcb10a2a" />
+<img width="497" height="798" alt="image" src="https://github.com/user-attachments/assets/473f676b-cbbc-4e25-8d2c-fe4f46d43669" />
+<img width="492" height="807" alt="image" src="https://github.com/user-attachments/assets/ba81ec2b-67c3-4b6a-b1cd-498f619cde69" />
+<img width="507" height="801" alt="image" src="https://github.com/user-attachments/assets/d8cf3e97-9006-41d5-b03e-4a2d6c95cfe4" />
+
+
+
+
+
+
