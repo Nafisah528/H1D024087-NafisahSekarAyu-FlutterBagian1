@@ -126,7 +126,7 @@ tokokita/
 
 ---
 
-## Screenshot Tampilan
+## Screenshot Tampilan Bagian1
 <img width="500" height="826" alt="image" src="https://github.com/user-attachments/assets/576e2c09-69b2-4a0a-8cef-1fe4b80158ae" />
 <img width="497" height="798" alt="image" src="https://github.com/user-attachments/assets/ce7ac632-3a33-474d-9f23-af1906a229ab" />
 <img width="497" height="810" alt="image" src="https://github.com/user-attachments/assets/4cf4e866-f125-48ef-8294-450953c1376b" />
@@ -135,3 +135,11 @@ tokokita/
 <img width="497" height="798" alt="image" src="https://github.com/user-attachments/assets/473f676b-cbbc-4e25-8d2c-fe4f46d43669" />
 <img width="492" height="807" alt="image" src="https://github.com/user-attachments/assets/ba81ec2b-67c3-4b6a-b1cd-498f619cde69" />
 <img width="507" height="801" alt="image" src="https://github.com/user-attachments/assets/d8cf3e97-9006-41d5-b03e-4a2d6c95cfe4" />
+## Screenshoot Tampilan Bagian2
+<img width="502" height="795" alt="image" src="https://github.com/user-attachments/assets/c96b8067-15c4-415f-ae9a-1f33277721f4" />
+<img width="495" height="797" alt="image" src="https://github.com/user-attachments/assets/3f307c52-60ee-4de8-b5ec-0ca52e4a633a" />
+<img width="523" height="811" alt="image" src="https://github.com/user-attachments/assets/a1574148-0bfb-43f3-b409-709f7a87eb44" />
+<img width="522" height="815" alt="image" src="https://github.com/user-attachments/assets/2936abe7-b1fe-416c-b6aa-dd1d966d8317" />
+
+
+
