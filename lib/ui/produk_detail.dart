@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tokokita/bloc/produk_bloc.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/produk_form.dart';
+import 'package:tokokita/ui/produk_page.dart';
+import 'package:tokokita/widget/warning_dialog.dart';
 
 class ProdukDetail extends StatefulWidget {
   Produk? produk;
@@ -44,7 +47,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Tombol Edit
+        //Tombol Edit
         OutlinedButton(
           child: const Text("EDIT"),
           onPressed: () {
@@ -58,7 +61,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
             );
           },
         ),
-        // Tombol Hapus
+        //Tombol Hapus
         OutlinedButton(
           child: const Text("DELETE"),
           onPressed: () => confirmHapus(),
@@ -71,18 +74,24 @@ class _ProdukDetailState extends State<ProdukDetail> {
     AlertDialog alertDialog = AlertDialog(
       content: const Text("Yakin ingin menghapus data ini?"),
       actions: [
-        // tombol hapus
+        //tombol hapus
         OutlinedButton(
           child: const Text("Ya"),
           onPressed: () {
-            Navigator.pop(context); // Tutup dialog
-            Navigator.pop(context); // Kembali ke list produk
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Data berhasil dihapus")),
-            );
+            ProdukBloc.deleteProduk(id: widget.produk!.id).then((value) {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => const ProdukPage()));
+            }, onError: (error) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => const WarningDialog(
+                  description: "Hapus gagal, silahkan coba lagi",
+                ),
+              );
+            });
           },
         ),
-        // tombol batal
+        //tombol batal
         OutlinedButton(
           child: const Text("Batal"),
           onPressed: () => Navigator.pop(context),
@@ -93,4 +102,3 @@ class _ProdukDetailState extends State<ProdukDetail> {
     showDialog(builder: (context) => alertDialog, context: context);
   }
 }
-

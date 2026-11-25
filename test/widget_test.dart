@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tokokita/main.dart';
 
 void main() {
-  testWidgets('Tokokita ProdukPage smoke test', (WidgetTester tester) async {
+  testWidgets('Tokokita smoke test', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle();
 
-    expect(find.text('List Produk'), findsOneWidget);
-    expect(find.text('Kamera'), findsOneWidget);
-    expect(find.text('Kulkas'), findsOneWidget);
-    expect(find.text('Mesin Cuci'), findsOneWidget);
+    expect(find.text('Login'), findsWidgets);
   });
 }

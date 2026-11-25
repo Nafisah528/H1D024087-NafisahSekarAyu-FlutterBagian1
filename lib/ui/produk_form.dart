@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tokokita/bloc/produk_bloc.dart';
 import 'package:tokokita/model/produk.dart';
+import 'package:tokokita/ui/produk_page.dart';
+import 'package:tokokita/widget/warning_dialog.dart';
 
 class ProdukForm extends StatefulWidget {
   Produk? produk;
@@ -56,7 +59,7 @@ class _ProdukFormState extends State<ProdukForm> {
                 _kodeProdukTextField(),
                 _namaProdukTextField(),
                 _hargaProdukTextField(),
-                _buttonSubmit(),
+                _buttonSubmit()
               ],
             ),
           ),
@@ -65,7 +68,7 @@ class _ProdukFormState extends State<ProdukForm> {
     );
   }
 
-  // Membuat Textbox Kode Produk
+  //Membuat Textbox Kode Produk
   Widget _kodeProdukTextField() {
     return TextFormField(
       decoration: const InputDecoration(labelText: "Kode Produk"),
@@ -80,7 +83,7 @@ class _ProdukFormState extends State<ProdukForm> {
     );
   }
 
-  // Membuat Textbox Nama Produk
+  //Membuat Textbox Nama Produk
   Widget _namaProdukTextField() {
     return TextFormField(
       decoration: const InputDecoration(labelText: "Nama Produk"),
@@ -95,7 +98,7 @@ class _ProdukFormState extends State<ProdukForm> {
     );
   }
 
-  // Membuat Textbox Harga Produk
+  //Membuat Textbox Harga Produk
   Widget _hargaProdukTextField() {
     return TextFormField(
       decoration: const InputDecoration(labelText: "Harga"),
@@ -110,26 +113,73 @@ class _ProdukFormState extends State<ProdukForm> {
     );
   }
 
-  // Membuat Tombol Simpan/Ubah
+  //Membuat Tombol Simpan/Ubah
   Widget _buttonSubmit() {
     return OutlinedButton(
       child: Text(tombolSubmit),
       onPressed: () {
         var validate = _formKey.currentState!.validate();
         if (validate) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                widget.produk != null
-                    ? "Data produk berhasil diubah"
-                    : "Data produk berhasil disimpan",
-              ),
-            ),
-          );
-          Navigator.pop(context);
+          if (!_isLoading) {
+            if (widget.produk != null) {
+              //kondisi update produk
+              ubah();
+            } else {
+              //kondisi tambah produk
+              simpan();
+            }
+          }
         }
       },
     );
   }
-}
 
+  simpan() {
+    setState(() {
+      _isLoading = true;
+    });
+    Produk createProduk = Produk(id: null);
+    createProduk.kodeProduk = _kodeProdukTextboxController.text;
+    createProduk.namaProduk = _namaProdukTextboxController.text;
+    createProduk.hargaProduk = int.parse(_hargaProdukTextboxController.text);
+    ProdukBloc.addProduk(produk: createProduk).then((value) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => const ProdukPage()));
+    }, onError: (error) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => const WarningDialog(
+          description: "Simpan gagal, silahkan coba lagi",
+        ),
+      );
+    });
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  ubah() {
+    setState(() {
+      _isLoading = true;
+    });
+    Produk updateProduk = Produk(id: null);
+    updateProduk.id = widget.produk!.id;
+    updateProduk.kodeProduk = _kodeProdukTextboxController.text;
+    updateProduk.namaProduk = _namaProdukTextboxController.text;
+    updateProduk.hargaProduk = int.parse(_hargaProdukTextboxController.text);
+    ProdukBloc.updateProduk(produk: updateProduk).then((value) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => const ProdukPage()));
+    }, onError: (error) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => const WarningDialog(
+          description: "Permintaan ubah data gagal, silahkan coba lagi",
+        ),
+      );
+    });
+    setState(() {
+      _isLoading = false;
+    });
+  }
+}

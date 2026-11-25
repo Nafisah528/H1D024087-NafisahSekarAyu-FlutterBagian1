@@ -47,19 +47,32 @@ Base URL: `http://localhost/toko-api/public`
 ```
 tokokita/
 ├── lib/
+│   ├── bloc/
+│   │   ├── login_bloc.dart          # Controller BLoC untuk autentikasi login
+│   │   ├── logout_bloc.dart         # Controller BLoC untuk proses logout (clear token)
+│   │   ├── produk_bloc.dart         # Controller BLoC CRUD produk (get, add, update, delete)
+│   │   └── registrasi_bloc.dart     # Controller BLoC untuk pendaftaran member baru
+│   ├── helpers/
+│   │   ├── api.dart                 # Wrapper HTTP Request (POST, GET, DELETE dengan Bearer Token)
+│   │   ├── api_url.dart             # Konfigurasi endpoint URL REST API
+│   │   ├── app_exception.dart       # Penanganan error jaringan (Exception handling)
+│   │   └── user_info.dart           # Local storage SharedPreferences (Token & UserID)
 │   ├── model/
-│   │   ├── login.dart         # Model deserialisasi response login
-│   │   ├── registrasi.dart    # Model deserialisasi response registrasi
-│   │   └── produk.dart        # Model deserialisasi objek produk
+│   │   ├── login.dart               # Model deserialisasi response login
+│   │   ├── produk.dart              # Model deserialisasi objek produk
+│   │   └── registrasi.dart          # Model deserialisasi response registrasi
 │   ├── ui/
-│   │   ├── registrasi_page.dart # Form registrasi dengan validasi Nama, Email (Regex), Password & Konfirmasi
-│   │   ├── login_page.dart      # Form login dengan link ke halaman Registrasi
-│   │   ├── produk_page.dart     # Halaman list produk, Drawer navigasi, dan tombol tambah produk (+)
-│   │   ├── produk_form.dart     # Form dinamis untuk Tambah Produk dan Ubah Produk
-│   │   └── produk_detail.dart   # Halaman detail produk lengkap tombol EDIT dan DELETE (konfirmasi dialog)
-│   └── main.dart                # Entry point aplikasi yang memanggil ProdukPage()
+│   │   ├── login_page.dart          # Form login terintegrasi LoginBloc & UserInfo
+│   │   ├── produk_detail.dart       # Detail produk terintegrasi ProdukBloc.deleteProduk
+│   │   ├── produk_form.dart         # Form Tambah & Ubah terintegrasi ProdukBloc
+│   │   ├── produk_page.dart         # List produk dinamis via FutureBuilder & ProdukBloc
+│   │   └── registrasi_page.dart     # Form registrasi terintegrasi RegistrasiBloc
+│   ├── widget/
+│   │   ├── success_dialog.dart      # Dialog notifikasi sukses
+│   │   └── warning_dialog.dart      # Dialog notifikasi peringatan/gagal
+│   └── main.dart                    # Entry point aplikasi dengan pengecekan token sesi login
 └── test/
-    └── widget_test.dart         # Smoke test widget Toko Kita
+    └── widget_test.dart             # Smoke test widget Toko Kita
 ```
 
 ---
